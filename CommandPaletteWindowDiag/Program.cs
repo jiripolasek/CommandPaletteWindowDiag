@@ -38,6 +38,8 @@ namespace CommandPaletteWindowDiag
             {
                 Console.OutputEncoding = Encoding.UTF8;
 
+                PrintBanner();
+
                 string targetProcessName = args != null && args.Length > 0 ? args[0] : "Microsoft.CmdPal.UI.exe";
                 targetProcessName = NormalizeProcessName(targetProcessName);
 
@@ -112,10 +114,25 @@ namespace CommandPaletteWindowDiag
             Console.ReadLine();
         }
 
-        private static void PrintSeparator()
+        private static void PrintBanner()
         {
             var def = Console.ForegroundColor;
+
             Console.ForegroundColor = ConsoleColor.DarkGray;
+            PrintSeparator();
+            Console.WriteLine("- Command Palette Diagnostics");
+            Console.WriteLine("- v1.0.0");
+            PrintSeparator();
+            Console.ForegroundColor = def;
+
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        private static void PrintSeparator(ConsoleColor color = ConsoleColor.DarkGray)
+        {
+            var def = Console.ForegroundColor;
+            Console.ForegroundColor = color;
             Console.WriteLine(new string('─', 80));
             Console.ForegroundColor = def;
         }
